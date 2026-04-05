@@ -1,1 +1,33 @@
+- name: Basic Security Hardening
+  hosts: localhost
+  become: yes
 
+  tasks:
+
+    - name: Install UFW firewall
+      apt:
+        name: ufw
+        state: present
+
+    - name: Enable UFW
+      command: ufw --force enable
+
+    - name: Allow SSH
+      command: ufw allow ssh
+
+    - name: Set SSH MaxAuthTries
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^MaxAuthTries'
+        line: 'MaxAuthTries 3'
+
+    - name: Disable root login
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PermitRootLogin'
+        line: 'PermitRootLogin no'
+
+    - name: Restart SSH
+      service:
+        name: ssh
+        state: restarted
