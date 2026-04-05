@@ -53,7 +53,6 @@ ping google.com
 
 System ready for scanning and testing.
 
-📸 *Add screenshots:*
 
 * Ubuntu installation
 * IP address (`ip a`)
@@ -102,7 +101,9 @@ Due to setup limitations with OpenVAS, I used **Nmap scripting engine** to:
 
 <img width="947" height="812" alt="Screenshot 2026-03-28 134722" src="https://github.com/user-attachments/assets/fc1adc49-c028-43f1-9fdf-32e954be984f" />
 
+---
 
+https://drive.google.com/file/d/1xG4vMyGByZKumpvjYbW1XhEE_VYM6pPa/view?usp=drive_link
 
 * Nmap scan output
 * Vulnerability script output
@@ -144,8 +145,10 @@ sudo oscap xccdf eval \
 
 <img width="890" height="581" alt="Screenshot 2026-04-01 131310" src="https://github.com/user-attachments/assets/aa9bcabe-af4a-4803-aa79-d3deda26ae57" />
 
---
-https://drive.google.com/file/d/1xG4vMyGByZKumpvjYbW1XhEE_VYM6pPa/view?usp=drive_link
+---
+
+https://drive.google.com/file/d/1KfgMco_3ij5vfrcPaQZHmQd1J1_aW6za/view?usp=drive_link
+
 
 * HTML report (FAIL cases)
 * Terminal scan output
@@ -195,7 +198,7 @@ sudo oscap xccdf eval \
 
 <img width="532" height="638" alt="Screenshot 2026-04-05 094213" src="https://github.com/user-attachments/assets/e09a5c6f-956f-454c-b19d-a79192f1b3f4" />
 
-https://drive.google.com/drive/folders/1ysm8eaWuvpso2yYmU9Ftx4yuD7bUbob4
+video of final result - https://drive.google.com/drive/folders/1ysm8eaWuvpso2yYmU9Ftx4yuD7bUbob4
 
 
 * Ansible execution
