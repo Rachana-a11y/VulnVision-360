@@ -147,7 +147,7 @@ sudo oscap xccdf eval \
 
 ---
 
-https://drive.google.com/file/d/1KfgMco_3ij5vfrcPaQZHmQd1J1_aW6za/view?usp=drive_link
+Result: https://drive.google.com/file/d/1TIacHA58tmheDA6zYZZDgC03KKdZXhOw/view?usp=sharing
 
 
 * HTML report (FAIL cases)
