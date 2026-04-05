@@ -97,7 +97,14 @@ Due to setup limitations with OpenVAS, I used **Nmap scripting engine** to:
 * No detailed CVE scoring
 * Limited vulnerability depth
 
-📸 *Add screenshots:*
+--
+<img width="738" height="332" alt="infotact-week1(1)" src="https://github.com/user-attachments/assets/bb4855f3-5da5-4ebe-be50-eb134d4811da" />
+
+-
+<img width="947" height="812" alt="Screenshot 2026-03-28 134722" src="https://github.com/user-attachments/assets/fc1adc49-c028-43f1-9fdf-32e954be984f" />
+--
+
+
 
 * Nmap scan output
 * Vulnerability script output
@@ -135,8 +142,9 @@ sudo oscap xccdf eval \
 
 * Identified misconfigurations
 * Generated compliance report
-
-📸 *Add screenshots:*
+-
+<img width="890" height="581" alt="Screenshot 2026-04-01 131310" src="https://github.com/user-attachments/assets/aa9bcabe-af4a-4803-aa79-d3deda26ae57" />
+-
 
 * HTML report (FAIL cases)
 * Terminal scan output
@@ -177,7 +185,18 @@ sudo oscap xccdf eval \
 * Security improved
 * Previously skipped rules now evaluated
 
-📸 *Add screenshots:*
+<img width="582" height="671" alt="Screenshot 2026-04-05 082938" src="https://github.com/user-attachments/assets/7fcf35be-3577-4a6b-a03c-b1d0a9e9b9aa" />
+
+--
+<img width="1302" height="512" alt="Screenshot 2026-04-05 084302" src="https://github.com/user-attachments/assets/2140188c-02ed-424f-81dc-2da9142b922b" />
+
+--
+
+<img width="532" height="638" alt="Screenshot 2026-04-05 094213" src="https://github.com/user-attachments/assets/e09a5c6f-956f-454c-b19d-a79192f1b3f4" />
+
+--
+
+
 
 * Ansible execution
 * Final HTML report
