@@ -1,42 +1,47 @@
-# 🔐 Linux Security Hardening & Compliance using OpenSCAP and Ansible
+#VulnVision 360
+# 🔐 Linux Security Hardening & Compliance Project
+
+### OpenSCAP • Ansible • Nmap (CIS Benchmark Implementation)
+
+![Linux](https://img.shields.io/badge/Platform-Linux-blue)
+![Ubuntu](https://img.shields.io/badge/Tested%20On-Ubuntu%2024.04-orange)
+![Security](https://img.shields.io/badge/Domain-Cybersecurity-red)
+![Automation](https://img.shields.io/badge/Tool-Ansible-green)
+![Scanning](https://img.shields.io/badge/Tool-Nmap-blueviolet)
+![Compliance](https://img.shields.io/badge/Standard-CIS%20Benchmark-yellow)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 ---
 
-## 📖 Project Overview
+## 📖 Introduction
 
-This project demonstrates a complete security lifecycle on a Linux system using industry tools. It includes vulnerability scanning using OpenSCAP, identifying compliance gaps based on CIS benchmarks, and automating remediation using Ansible.
+This project showcases a **practical end-to-end Linux security workflow**.
+The system starts in a basic, less secure state and is gradually improved through scanning, compliance checks, and automated remediation.
 
-The goal is to improve system security posture and validate results through before-and-after compliance reports.
-
----
-
-## 🧰 Tools & Technologies
-
-* Ubuntu 24.04
-* Kali Linux
-* OpenSCAP
-* SCAP Security Guide (ComplianceAsCode)
-* Ansible
-* VirtualBox
-* SSH
-* Python HTTP Server
+Instead of relying only on theory, this project focuses on **real command execution, troubleshooting, and validation**.
 
 ---
 
-## 📅 Week 1 – Environment Setup
+## 📸 Screenshots & 🎥 Demo
 
-### 🎯 Objective
+🔗 All screenshots and recordings:
+https://drive.google.com/drive/folders/1ysm8eaWuvpso2yYmU9Ftx4yuD7bUbob4
 
-Set up a secure testing environment.
+---
 
-### ⚙️ Tasks Performed
+# 📅 Week 1 – Environment Setup & Discovery
 
-* Installed Ubuntu 24.04 in VirtualBox
-* Installed Kali Linux for testing
-* Configured network connectivity
-* Verified communication using ping
+## 🎯 Goal
 
-### 📜 Commands Used
+Set up lab environment and confirm connectivity.
+
+## ⚙️ Work Done
+
+* Installed Ubuntu 24.04 (VirtualBox)
+* Configured networking
+* Verified internet & system connectivity
+
+## 💻 Commands
 
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -44,165 +49,120 @@ ip a
 ping google.com
 ```
 
-### 📸 Screenshots to Include
+## 📌 Outcome
 
-* Ubuntu installation screen
-* Network configuration
-* Successful ping output
+System ready for scanning and testing.
 
----
+📸 *Add screenshots:*
 
-## 📅 Week 2 – OpenSCAP Installation & Setup
-
-### 🎯 Objective
-
-Install OpenSCAP and build security content.
-
-### ⚙️ Commands Used
-
-```bash
-sudo apt install openscap-scanner openscap-utils git cmake make -y
-```
-
-### 🔧 Manual Setup (since package unavailable)
-
-```bash
-git clone https://github.com/ComplianceAsCode/content.git
-cd content
-mkdir build
-cd build
-cmake ..
-make -j4
-```
-
-### 📊 Output
-
-* Generated `ssg-ubuntu2404-ds.xml`
-
-### ⚠️ Challenges Faced
-
-* scap-security-guide package missing
-* Dependency errors (cmake, xml tools)
-* Permission denied while cloning
-
-### ✅ Fixes
-
-```bash
-sudo apt install xsltproc libxml2-utils -y
-sudo chown -R $USER:$USER ~/content
-```
-
-### 📸 Screenshots to Include
-
-* Build process (cmake, make)
-* ds.xml file created
+* Ubuntu installation
+* IP address (`ip a`)
+* Successful ping
 
 ---
 
-## 📅 Week 3 – Vulnerability Assessment
+# 📅 Week 2 – Vulnerability Identification (Nmap)
 
-### 🎯 Objective
+## 🎯 Goal
 
-Scan system using CIS benchmark.
+Identify exposed services and possible weaknesses.
 
-### ⚙️ Command Used
+## ⚙️ Tool
+
+* Nmap (NSE scripts)
+
+## 💻 Commands
+
+```bash
+nmap -A <target-ip>
+nmap --script vuln <target-ip>
+```
+
+## 🔍 What I Did
+
+Due to setup limitations with OpenVAS, I used **Nmap scripting engine** to:
+
+* Detect running services
+* Identify open ports
+* Check basic vulnerabilities
+
+## 📊 Result
+
+* Found active services
+* Identified exposed ports
+* Observed potential risks
+
+## ⚠️ Limitation
+
+* No detailed CVE scoring
+* Limited vulnerability depth
+
+📸 *Add screenshots:*
+
+* Nmap scan output
+* Vulnerability script output
+
+---
+
+# 📅 Week 3 – Compliance Scan using OpenSCAP
+
+## 🎯 Goal
+
+Check system against **CIS Benchmark (Level 1 Server)**
+
+## ⚙️ Command
 
 ```bash
 sudo oscap xccdf eval \
 --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
---results results.xml \
 --report report.html \
 ~/content/build/ssg-ubuntu2404-ds.xml
 ```
 
-### 📊 Observations
+## 📊 Observations
 
-* Multiple FAIL results
-* Some rules showed “Not Applicable”
-* SSH-related rules not detected
+* Several rules showed **FAIL**
+* Many showed **NOT APPLICABLE**
 
-### ⚠️ Challenges
+## 🧠 Key Finding
 
-* Wrong file paths
-* Missing CPE dictionary
-* Profile mismatch
-* “Not Applicable” confusion
+“NOT APPLICABLE” occurred because:
 
-### ✅ Fixes
+➡️ SSH service was not installed
+➡️ So SSH-related checks were skipped
 
-```bash
-sudo mkdir -p /usr/share/openscap/cpe
-sudo wget https://raw.githubusercontent.com/OpenSCAP/openscap/master/cpe/openscap-cpe-dict.xml -P /usr/share/openscap/cpe/
-```
+## 📌 Outcome
 
-### 📸 Screenshots to Include
+* Identified misconfigurations
+* Generated compliance report
 
-* HTML report (FAIL results)
+📸 *Add screenshots:*
+
+* HTML report (FAIL cases)
 * Terminal scan output
 
 ---
 
-## 📅 Week 4 – Automated Remediation using Ansible
+# 📅 Week 4 – Automated Remediation (Ansible)
 
-### 🎯 Objective
+## 🎯 Goal
 
-Fix vulnerabilities and improve compliance automatically.
+Fix security issues automatically.
 
-### ⚙️ Install Ansible
+## ⚙️ Steps
 
-```bash
-sudo apt install ansible -y
-```
+* Installed SSH server
+* Configured SSH security
+* Enabled firewall
+* Applied system hardening
 
-### 📄 Playbook (hardening.yml)
-
-```yaml
-- name: Basic Security Hardening
-  hosts: localhost
-  become: yes
-
-  tasks:
-    - name: Install SSH server
-      apt:
-        name: openssh-server
-        state: present
-
-    - name: Install firewall
-      apt:
-        name: ufw
-        state: present
-
-    - name: Enable firewall
-      shell: yes | ufw enable
-
-    - name: Allow SSH
-      command: ufw allow 22
-
-    - name: Set SSH MaxAuthTries
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        regexp: '^#?MaxAuthTries'
-        line: 'MaxAuthTries 3'
-
-    - name: Disable root login
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        regexp: '^#?PermitRootLogin'
-        line: 'PermitRootLogin no'
-
-    - name: Restart SSH
-      shell: systemctl restart ssh || systemctl restart sshd
-```
-
-### ▶️ Run Playbook
+## ▶️ Run Playbook
 
 ```bash
 ansible-playbook -i hosts hardening.yml --ask-become-pass
 ```
 
----
-
-## 🔁 Re-Scan After Remediation
+## 🔁 Re-Scan
 
 ```bash
 sudo oscap xccdf eval \
@@ -211,29 +171,92 @@ sudo oscap xccdf eval \
 ~/content/build/ssg-ubuntu2404-ds.xml
 ```
 
+## 📊 Result
+
+* FAIL results reduced
+* Security improved
+* Previously skipped rules now evaluated
+
+📸 *Add screenshots:*
+
+* Ansible execution
+* Final HTML report
+
 ---
 
-## 📊 Week 3 vs Week 4 Comparison
+# 📊 Before vs After
 
-| Category         | Week 3   | Week 4   |
-| ---------------- | -------- | -------- |
-| Firewall         | Disabled | Enabled  |
-| SSH Config       | Weak     | Hardened |
-| Root Login       | Allowed  | Disabled |
-| Failures         | High     | Reduced  |
-| Compliance Score | Low      | Improved |
+| Area     | Before         | After     |
+| -------- | -------------- | --------- |
+| SSH      | Not Installed  | Installed |
+| Rules    | Not Applicable | Evaluated |
+| Firewall | Disabled       | Enabled   |
+| Security | Weak           | Improved  |
 
 ---
 
-## 🌐 How to View HTML Report
+# ⚠️ Challenges Faced & How I Solved Them
 
-### Method 1: Python Server (Recommended)
+## 1. OpenSCAP package missing
+
+✔️ Built manually from GitHub
+
+## 2. Permission denied (git clone)
+
+✔️ Fixed using:
+
+```bash
+sudo chown -R $USER:$USER ~/content
+```
+
+## 3. CMake build errors
+
+✔️ Installed dependencies:
+
+```bash
+sudo apt install cmake xsltproc libxml2-utils -y
+```
+
+## 4. NOT APPLICABLE confusion
+
+✔️ Root cause: SSH not installed
+✔️ Solution:
+
+```bash
+sudo apt install openssh-server -y
+```
+
+## 5. Ansible error (sshd_config missing)
+
+✔️ Installed SSH service
+
+## 6. Cannot open HTML report
+
+✔️ Used Python server:
 
 ```bash
 python3 -m http.server 8000 --bind 0.0.0.0
 ```
 
-Open in Windows:
+## 7. Cannot access from Windows
+
+✔️ Fixed by:
+
+* Using Bridged Adapter
+* Checking IP with `ip a`
+* Allowing firewall if needed
+
+---
+
+# 🌐 How to View HTML Report
+
+## ✔️ Best Method
+
+```bash
+python3 -m http.server 8000 --bind 0.0.0.0
+```
+
+Then open:
 
 ```
 http://<VM-IP>:8000
@@ -241,7 +264,7 @@ http://<VM-IP>:8000
 
 ---
 
-### Method 2: SCP Transfer
+## ✔️ Alternative (Download to Windows)
 
 ```powershell
 scp user@IP:~/final-report.html .
@@ -249,31 +272,24 @@ scp user@IP:~/final-report.html .
 
 ---
 
-### Method 3: SSH + Browser (if GUI installed)
+# 🎥 Adding Videos to GitHub
 
-```bash
-firefox final-report.html
-```
+Since GitHub limits large files:
 
----
+✔️ Upload videos to:
 
-## 🎥 Adding Videos to GitHub
+* Google Drive
+* YouTube (Unlisted)
 
-GitHub does not support large videos directly.
-
-### Recommended:
-
-* Upload to Google Drive / YouTube (Unlisted)
-* Add link:
+✔️ Add link:
 
 ```markdown
-## 🎥 Demo Video
-[Watch Here](your-video-link)
+[Watch Demo](your-link)
 ```
 
 ---
 
-## 📸 Adding Screenshots
+# 📸 Adding Screenshots
 
 Create folder:
 
@@ -281,47 +297,37 @@ Create folder:
 mkdir images
 ```
 
-Use in README:
+Use:
 
 ```markdown
-![Scan Result](images/week3.png)
-![Final Result](images/week4.png)
+![Week 3](images/week3.png)
+![Week 4](images/week4.png)
 ```
 
 ---
 
-## ⚠️ Challenges Faced
+# 💡 Key Learnings
 
-* Missing OpenSCAP packages
-* Build failures using cmake
-* Incorrect profile usage
-* “Not Applicable” confusion
-* SSH not installed (missing sshd_config)
-* Ansible sudo permission issues
-* Network issues (Bridged adapter timeout)
-* Unable to access HTML from VM
-* Firewall blocking ports
-
----
-
-## 💡 Key Learnings
-
-* Practical vulnerability scanning
-* CIS benchmark understanding
+* Real-world vulnerability scanning
+* CIS compliance understanding
 * Automation using Ansible
-* Troubleshooting real-world errors
-* Importance of correct configurations
+* Debugging system-level issues
+* Importance of proper configuration
 
 ---
 
-## ✅ Conclusion
+# 📌 Conclusion
 
-This project demonstrates a complete security workflow:
+This project demonstrates a **complete security improvement cycle**:
 
-* Identify vulnerabilities using OpenSCAP
-* Fix them using Ansible automation
-* Validate improvements through rescanning
+➡️ Scan → Identify → Fix → Verify
 
-It highlights the importance of automation in maintaining secure and compliant systems.
+It highlights how automation and compliance tools can significantly improve system security in a practical environment.
+
+---
+
+## ⭐ Author
+
+Rachana
 
 ---
