@@ -143,7 +143,9 @@ sudo oscap xccdf eval \
 
 
 <img width="890" height="581" alt="Screenshot 2026-04-01 131310" src="https://github.com/user-attachments/assets/aa9bcabe-af4a-4803-aa79-d3deda26ae57" />
-https://drive.google.com/drive/folders/1ysm8eaWuvpso2yYmU9Ftx4yuD7bUbob4
+
+--
+https://drive.google.com/file/d/1xG4vMyGByZKumpvjYbW1XhEE_VYM6pPa/view?usp=drive_link
 
 * HTML report (FAIL cases)
 * Terminal scan output
