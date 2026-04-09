@@ -73,7 +73,7 @@ Identify exposed services and possible weaknesses.
 ## 💻 Commands
 
 ```bash
-nmap -A <target-ip>
+nmap -A 192.168.56.102 (metasploitable ip)
 nmap --script vuln <target-ip>
 ```
 
@@ -100,6 +100,14 @@ Due to setup limitations with OpenVAS, I used **Nmap scripting engine** to:
 <img width="738" height="332" alt="infotact-week1(1)" src="https://github.com/user-attachments/assets/bb4855f3-5da5-4ebe-be50-eb134d4811da" />
 
 <img width="947" height="812" alt="Screenshot 2026-03-28 134722" src="https://github.com/user-attachments/assets/fc1adc49-c028-43f1-9fdf-32e954be984f" />
+
+<img width="2000" height="2588" alt="image" src="https://github.com/user-attachments/assets/14e71946-c61e-4563-8f5c-d004b64f7572" />
+
+<img width="2000" height="2588" alt="image" src="https://github.com/user-attachments/assets/e3f164fd-a028-4bdf-998b-61221002d1ab" />
+
+<img width="2000" height="2588" alt="image" src="https://github.com/user-attachments/assets/72df6326-2915-435a-93c2-20cfc4c04c02" />
+
+![Uploading image.png…]()
 
 ---
 
