@@ -294,39 +294,6 @@ scp user@IP:~/final-report.html .
 
 ---
 
-# 🎥 Adding Videos to GitHub
-
-Since GitHub limits large files:
-
-✔️ Upload videos to:
-
-* Google Drive
-* YouTube (Unlisted)
-
-✔️ Add link:
-
-```markdown
-[Watch Demo](your-link)
-```
-
----
-
-# 📸 Adding Screenshots
-
-Create folder:
-
-```bash
-mkdir images
-```
-
-Use:
-
-```markdown
-![Week 3](images/week3.png)
-![Week 4](images/week4.png)
-```
-
----
 
 # 💡 Key Learnings
 
